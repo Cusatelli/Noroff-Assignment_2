@@ -83,6 +83,8 @@
   </li>
 </ol>
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+
 # Appendix A
 ### Requirements for the Trivia Game
 1. API Configuration (OpenDB and Trivia API)
@@ -127,6 +129,8 @@ Scoring Constraint:
 1.	Each correctly answered question should count 10 points. 
 2.	Only update the score on the API if it is higher than the previous score 
 ```
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 # Install
 ```
