@@ -57,29 +57,29 @@
   </li>
   <li>
     <p>Write HTML & CSS as needed</p>
-    <ol>
+    <ul>
       <li>Colours: If you have trouble choosing colours, use a free resource like https://coolors.co to browse and experiment with colour combinations.</li>
       <li>Animations: If you want to use animations to bring your design to life, use https://animate.style/.</li>
       <li>Free graphics for your web applications: https://www.justinmind.com/blog/35-places-to-get-free-vectorimages-for-your-designs/</li>
-    </ol>
+    </ul>
   </li>
   <li>
     <p>Use the Vue.js framework to build the following screens into your trivia game  (See Appendix A for detailed specs):</p>
-    <ol>
+    <ul>
       <li>The start screen</li>
       <li>The question screen</li>
       <li>The result screen</li>
-    </ol>
+    </ul>
   </li>
   <li>
     <p>Submit</p>
-    <ol>
+    <ul>
       <li>Export the component tree to PDF, upload the file to your Git repository and submit a link to your file.</li>
       <li>
         Publish your Single Page Application on Heroku and submit a link to your game and the source code on your Git repository.
         Use https://gitlab.com/javascript-project-examples/heroku-deployment-guides to learn how to deploy Vue apps to Heroku.
       </li>
-    </ol>
+    </ul>
   </li>
 </ol>
 
@@ -116,7 +116,7 @@ User Constraint:
       <li>Once a question is answered the app must move on to the next question.</li>
       <li>When all the questions have been answered the user must be presented with the result screen.</li>
     </ul>
-4. Result Screen
+4. Result Screenm
     <ul>
       <li>The result screen must show all the questions along with the correct and user’s answers.</li>
       <li>Display the total score.</li>
