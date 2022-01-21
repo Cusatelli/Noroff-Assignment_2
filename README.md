@@ -139,7 +139,7 @@ npm install
 
 # Usage
 ```
-npm start
+npm run dev
 ```
 
 <p align="right">(<a href="#top">back to top</a>)</p>
