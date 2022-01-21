@@ -49,11 +49,7 @@
       The component tree should show the pages and feature components you plan to create in your application.
       This will count towards the overall grade for the application. It should be done BEFORE a single line of code is written.
     </p>
-    <img src="https://blog.logrocket.com/wp-content/uploads/2021/05/basic-react-component-tree.png" alt="Example component tree">
-    <p>
-      Source: 
-      <a href="https://blog.logrocket.com/modern-guide-react-state-patterns/">https://blog.logrocket.com/modern-guide-react-state-patterns/</a>
-    </p>
+    <img src="/resources/Component Diagram.v1.0.0.png" alt="Example Component Diagram: Trivia Game">
   </li>
   <li>
     <p>Write HTML & CSS as needed</p>
