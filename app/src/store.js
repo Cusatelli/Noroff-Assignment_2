@@ -29,7 +29,7 @@ export default createStore({
                     throw new Error('login | unknown action provided: [' + action + ']')
                 }
 
-                const [error, user] = ["OOPS!", { username: username.value }]
+                const [error, user] = [null, { username: username.value }]
 
                 // const [error, user] = await apiLoginUser(
                 //     action,
