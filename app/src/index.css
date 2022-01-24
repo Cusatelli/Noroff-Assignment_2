@@ -14,6 +14,25 @@
     border-radius: 1rem;
 }
 
+.option-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #CCC;
+    width: 30rem;
+    margin-inline: auto;
+    border-radius: 1rem;
+}
+
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #CCC;
+    width: 30rem;
+    margin-inline: auto;
+    border-radius: 1rem;
+}
 .start-button {
     padding: 1rem 3rem;
     font-size: 2rem;
@@ -27,6 +46,22 @@
     cursor: pointer;
 }
 
+.game-btn {
+    padding: 1rem 3rem;
+    font-size: 2rem;
+    font-weight: bolder;
+    border: none;
+    text-transform: uppercase;
+    margin-block: 2rem;
+    background-color: #42b983;
+    color: #35495e;
+    box-shadow: 0 -3px #35495e;
+    cursor: pointer;
+}
+
+.game-btn {
+    background-color: #4bcf94;
+}
 .start-button:hover {
     background-color: #4bcf94;
 }
