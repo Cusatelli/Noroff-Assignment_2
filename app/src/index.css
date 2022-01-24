@@ -4,7 +4,7 @@
     aspect-ratio: 1;
 }
 
-#app {
+.start-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,10 +12,6 @@
     width: 30rem;
     margin-inline: auto;
     border-radius: 1rem;
-}
-
-.start-container {
-    
 }
 
 .start-button {
