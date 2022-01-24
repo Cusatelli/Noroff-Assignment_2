@@ -1,3 +1,8 @@
+import { createRouter, createWebHistory } from 'vue-router';
+
+import Start from './views/Start.vue';
+import AuthGuard from './views/AuthGuard.vue';
+
 const routes = [
     {
         path: "/",
@@ -21,4 +26,3 @@ export default createRouter(
         routes
     }
 )
-
