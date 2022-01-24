@@ -5,17 +5,11 @@ import Start from './components/Start.vue'
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <Start msg="Trivia App - Start" />
+    <div id="app">
+        <img alt="Trivia Logo" src="./assets/logo.png" class="app-logo" />
+        <Start/>
+    </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style src="./index.css">
 </style>
