@@ -1,7 +1,6 @@
 {
   "name": "app",
   "version": "0.0.0",
-  "main": "vite.config.js",
   "scripts": {
     "dev": "vite",
     "start": "vite",
