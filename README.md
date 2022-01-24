@@ -49,7 +49,7 @@
       The component tree should show the pages and feature components you plan to create in your application.
       This will count towards the overall grade for the application. It should be done BEFORE a single line of code is written.
     </p>
-    <img src="/resources/Component Diagram.v1.0.0.png" alt="Example Component Diagram: Trivia Game">
+    <img src="/resources/Component Diagram.png" alt="Example Component Diagram: Trivia Game">
   </li>
   <li>
     <p>Write HTML & CSS as needed</p>
