@@ -7,7 +7,7 @@ import Game from './views/Game.vue'
 
 const authGuard = (_to, _from, next) => {
     if(store.state.user) {
-        next('/')
+        next('/options')
     } else {
         next()
     }
