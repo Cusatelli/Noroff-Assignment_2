@@ -1,4 +1,5 @@
-<script setup>import { reactive } from 'vue';
+<script setup>
+import { reactive } from 'vue';
 import { useStore } from 'vuex';
 import { ref } from 'vue'
 import { computed } from 'vue';
@@ -16,6 +17,7 @@ const selected = reactive({
     category: "",
     numOfQuestion: 1
 })
+
 //change to api
 const difficulties = [{ id: 1, name: "Easy" }, { id: 2, name: "Medium" }, { id: 3, name: "Hard" }];
 
@@ -26,7 +28,6 @@ function onPlay() {
         router.push('/game');
     })
 }
-
 </script>
 
 <template>
