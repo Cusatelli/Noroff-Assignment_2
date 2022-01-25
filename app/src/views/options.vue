@@ -12,16 +12,19 @@ fetch("https://opentdb.com/api_category.php")
 
 const difficulty = ref('');
 const category = ref('');
+const type = ref('');
 const numberOfQuestions = ref('');
 
 //change to api
-const difficulties = [{ id: 1, name: "Easy" }, { id: 2, name: "Medium" }, { id: 3, name: "Hard" }];
+const difficulties = [{ id: 1, name: "easy" }, { id: 2, name: "medium" }, { id: 3, name: "hard" }];
+const types = [{ id: 1, name: "multiple choice" }, { id: 2, name: "true / false" }];
 
 function onPlay() {
-    store.dispatch("inputOptions", { difficulty, category, numberOfQuestions }).then(() => {
-        console.log("Go to game");
-        router.push('/game');
-    })
+    const options = { difficulty, category, type, numberOfQuestions };
+    store.dispatch("inputOptions", options)
+        .then(() => {
+            router.push('/game');
+        })
 }
 </script>
 
@@ -36,7 +39,7 @@ function onPlay() {
                     <option
                         v-for="(diff, index) in difficulties"
                         :key="index"
-                        :value="diff.id"
+                        :value="diff.name"
                     >{{ diff.name }}</option>
                 </select>
             </fieldset>
@@ -50,6 +53,20 @@ function onPlay() {
                         :key="index"
                         :value="cat.id"
                     >{{ cat.name }}</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <label for="type">Type</label>
+                <select v-model="type">
+                    <option disabled value>Please select one</option>
+                    <option
+                        v-for="(type, index) in types"
+                        :key="index"
+                        :value="type.name"
+                    >
+                        {{ type.name }}
+                    </option>
                 </select>
             </fieldset>
 

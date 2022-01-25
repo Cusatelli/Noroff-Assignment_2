@@ -26,11 +26,11 @@ export default createStore({
         },
     },
     actions: {
-        async inputOptions({ commit }, { difficulty, category, numberOfQuestions }) {
-            
+        async inputOptions({ commit }, { difficulty, category, type, numberOfQuestions }) {
             const inputs = {
                 difficulty: difficulty.value,
                 category: category.value,
+                type: type.value,
                 numberOfQuestions: numberOfQuestions.value
             }
 
