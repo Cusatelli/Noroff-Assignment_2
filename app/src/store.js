@@ -1,5 +1,4 @@
 import { createStore } from 'vuex'
-//import { apiLoginUser } from "./api/users"
 
 const initUser = () => {
     const storedUser = localStorage.getItem('user')
@@ -13,7 +12,7 @@ const initUser = () => {
 export default createStore({
     state: {
         user: initUser(),
-        inputs: null
+        inputs: {}
     },
     getters: {
 
@@ -27,32 +26,16 @@ export default createStore({
         },
     },
     actions: {
-        async send_inputs_to_game(context, inputs) {
-            try {
-                console.log(inputs.difficulty)
-                if (!inputs.difficulty) {
-                    throw new Error('no difficulty added: [' + action + ']')
-                }
-                // if (context !== inputs) {
-                //     throw new Error('unknown action provided: [' + action + ']')
-                // }
-
-
-                const [error, inputs] = [null, inputs]
-
-
-
-                if (error !== null) {
-                    throw new Error(error)
-                }
-
-                commit('setInputs', inputs) // commit = mutations
-                localStorage.setItem('inputs', JSON.stringify(inputs))
-
-                return null
-            } catch (error) {
-                return error.message
+        async inputOptions({ commit }, { difficulty, category, numberOfQuestions }) {
+            
+            const inputs = {
+                difficulty: difficulty.value,
+                category: category.value,
+                numberOfQuestions: numberOfQuestions.value
             }
+
+            commit('setInputs', inputs);
+            localStorage.setItem('options', JSON.stringify(inputs));
         },
         async loginUser({ commit }, { action, username }) {
             try {
