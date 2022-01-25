@@ -20,7 +20,12 @@ const difficulties = [{ id: 1, name: "easy" }, { id: 2, name: "medium" }, { id: 
 const types = [{ id: 1, name: "multiple choice" }, { id: 2, name: "true / false" }];
 
 function onPlay() {
-    const options = { difficulty, category, type, numberOfQuestions };
+    const options = {
+        difficulty: difficulty.value,// !== "" ? difficulty.value : "easy",
+        category: category.value,
+        type: type.value,
+        numberOfQuestions: numberOfQuestions.value
+    };
     store.dispatch("inputOptions", options)
         .then(() => {
             router.push('/game');
@@ -64,9 +69,7 @@ function onPlay() {
                         v-for="(type, index) in types"
                         :key="index"
                         :value="type.name"
-                    >
-                        {{ type.name }}
-                    </option>
+                    >{{ type.name }}</option>
                 </select>
             </fieldset>
 
@@ -77,7 +80,7 @@ function onPlay() {
                     id="num"
                     name="numberOfQuestions"
                     min="1"
-                    max="100"
+                    max="10"
                     v-model="numberOfQuestions"
                 />
             </fieldset>
