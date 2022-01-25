@@ -13,6 +13,7 @@ const initUser = () => {
 export default createStore({
     state: {
         user: initUser(),
+        inputs: null
     },
     getters: {
 
@@ -21,8 +22,38 @@ export default createStore({
         setUser: (state, user) => {
             state.user = user
         },
+        setInputs: (state, inputs) => {
+            state.inputs = inputs
+        },
     },
     actions: {
+        async send_inputs_to_game(context, inputs) {
+            try {
+                console.log(inputs.difficulty)
+                if (!inputs.difficulty) {
+                    throw new Error('no difficulty added: [' + action + ']')
+                }
+                // if (context !== inputs) {
+                //     throw new Error('unknown action provided: [' + action + ']')
+                // }
+
+
+                const [error, inputs] = [null, inputs]
+
+
+
+                if (error !== null) {
+                    throw new Error(error)
+                }
+
+                commit('setInputs', inputs) // commit = mutations
+                localStorage.setItem('inputs', JSON.stringify(inputs))
+
+                return null
+            } catch (error) {
+                return error.message
+            }
+        },
         async loginUser({ commit }, { action, username }) {
             try {
                 if (action !== 'login') {
