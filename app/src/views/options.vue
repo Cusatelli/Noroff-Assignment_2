@@ -1,85 +1,80 @@
 <script setup>
-function onPlay() {
-    console.log("Go to game");
-    router.push('/Game');
-}
-// const props = defineProps({
-//   el: '#selector',
-//   data: {
-//     selected: '',
-//     options: [
-//       {name: 'MacBook Air', id: 1},
-//       {name: 'MacBook Pro', id: 2},
-//       {name: 'Lenovo W530', id: 3},
-//       {name: 'MacBook Pro', id: 4},
-//       {name: 'Lenovo W530', id: 5},
-//       {name: 'Acer Aspire One', id: 6}
-//     ]
-//   }
-// })
+import { reactive } from 'vue';
+import { useStore } from 'vuex';
+import { ref } from 'vue'
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
+const store = useStore();
 
-const props = defineProps({
-    option: {
-        type: Object,
-        required: true
-    }
+const router = useRouter();
+const categories = ref([]);
+fetch("https://opentdb.com/api_category.php")
+    .then(response => response.json())
+    .then(data => data.trivia_categories).then((newCategories) => { categories.value = newCategories });
+
+const selected = reactive({
+    difficulty: "",
+    category: "",
+    numOfQuestion: 1
 })
+
+//change to api
+const difficulties = [{ id: 1, name: "Easy" }, { id: 2, name: "Medium" }, { id: 3, name: "Hard" }];
+
+function onPlay() {
+    const inputs = selected;
+    store.dispatch("send_inputs_to_game", inputs).then(() => {
+        console.log("Go to game");
+        router.push('/game');
+    })
+}
 </script>
 
 <template>
-<div class="option-container">
-    <h1>options</h1>
+    <div class="option-container">
+        <h1>options</h1>
         <form>
-<!--     
-    <fieldset>
-        <label for="difficulty">Difficulty</label>
-            <select v-model="selected">
-                <option disabled value="">Please select one</option>
-                <option>Easy</option>
-                <option>Medium</option>
-                <option>Hard</option>
-            </select>
-            <span>Selected: {{ selected }}</span>
-    </fieldset>
-
-    <fieldset>
-        <label for="category">Category</label>
-            <select v-model="selected">
-                <option disabled value="">Please select one</option>
-                <option>FRuits</option>
-                <option>Vegetable</option>
-                <option>Cats</option>
-            </select>
-            <span>Selected: {{ selected }}</span>
-    </fieldset>
-
-    <fieldset>
-        <label for="numberOfQuestions">Number of questions</label>
-            <select v-model="selected">
-                <option disabled value="">Please select one</option>
-                <option>5</option>
-                <option>10</option>
-                <option>15</option>
-            </select>
-            <span>Selected: {{ selected }}</span>
-    </fieldset> -->
-
-    <fieldset>
-        <label for="testing">Testing</label>
-            <div id="selector">
-                <select>
-                    <option > {{ props.data.options.name }} </option>
+            <fieldset>
+                <label for="difficulty">Difficulty</label>
+                <select v-model="selected.difficulty">
+                    <option disabled value>Please select one</option>
+                    <option
+                        v-for="(diff, index) in difficulties"
+                        :key="index"
+                        :value="diff.id"
+                    >{{ diff.name }}</option>
                 </select>
-                <!-- <span>Selected: {{  }}</span> -->
-            </div>
-    </fieldset>
+            </fieldset>
 
-    <div>
-        <button type="button" class="start-button" @click="onPlay">Play</button>
+            <fieldset>
+                <label for="category">Category</label>
+                <select v-model="selected.category">
+                    <option disabled value>Please select one</option>
+                    <option
+                        v-for="(cat, index) in categories"
+                        :key="index"
+                        :value="cat.id"
+                    >{{ cat.name }}</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <label for="numberOfQuestions">Number of questions</label>
+                <input
+                    type="number"
+                    id="num"
+                    name="numOfQuestion"
+                    min="1"
+                    max="100"
+                    v-model="selected.numOfQuestion"
+                />
+            </fieldset>
+
+            <div>
+                <button type="button" class="start-button" @click="onPlay">Play</button>
+            </div>
+        </form>
     </div>
-    
-</form>
-</div>
 </template>
 
 <style scoped>

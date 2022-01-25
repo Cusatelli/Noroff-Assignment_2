@@ -5,7 +5,7 @@ import LoginForm from '../components/LoginForm.vue';
 const router = useRouter();
 
 const handleAuthSuccess = () => {
-    router.push('/') // Go-to '/' page
+    router.push('/options') // Go-to '/options' page
 }
 </script>
 
