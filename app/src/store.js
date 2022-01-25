@@ -29,13 +29,15 @@ export default createStore({
     actions: {
         async inputOptions({ commit }, { difficulty, category, type, numberOfQuestions }) {
             // Clamp
-            if(numberOfQuestions > 10) {
+            if (numberOfQuestions > 10) {
                 numberOfQuestions = 10;
                 console.log(`Oops! You can not have more than ${numberOfQuestions} questions!`);
-            } else if(numberOfQuestions < 2) {
+            } else if (numberOfQuestions < 2) {
                 numberOfQuestions = 2;
                 console.log(`Oops! You can not have less than ${numberOfQuestions} questions!`);
             }
+            if (type === "multiple choice") { type = "multiple"; }
+            else { type = "boolean"; }
 
             const inputs = {
                 difficulty: difficulty || "easy",
