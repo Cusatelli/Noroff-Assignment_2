@@ -1,4 +1,5 @@
-<script setup>import { reactive } from 'vue';
+<script setup>
+import { reactive } from 'vue';
 import { useStore } from 'vuex';
 import { ref } from 'vue'
 import { computed } from 'vue';
@@ -11,17 +12,14 @@ fetch("https://opentdb.com/api_category.php")
     .then(response => response.json())
     .then(data => data.trivia_categories).then((newCategories) => { categories.value = newCategories });
 
-
-
-
 const selected = reactive({
     difficulty: "",
     category: "",
     numOfQuestion: 1
 })
+
 //change to api
 const difficulties = [{ id: 1, name: "Easy" }, { id: 2, name: "Medium" }, { id: 3, name: "Hard" }];
-
 
 function onPlay() {
     const inputs = selected;
@@ -30,7 +28,6 @@ function onPlay() {
         router.push('/game');
     })
 }
-
 </script>
 
 <template>
