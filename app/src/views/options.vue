@@ -24,13 +24,11 @@ const difficulties = [{ id: 1, name: "Easy" }, { id: 2, name: "Medium" }, { id: 
 
 
 function onPlay() {
-
     const inputs = selected;
     store.dispatch("send_inputs_to_game", inputs).then(() => {
         console.log("Go to game");
-        router.push('/Game');
+        router.push('/game');
     })
-
 }
 
 </script>
