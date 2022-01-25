@@ -14,9 +14,8 @@
  * @param {String} type 
  * @returns API Key as a string value.
  */
-export function apiGenerateURL(amount, category, difficulty, type) {
-    category += 9; // API begins at 9 instead of 0.
-    return "https://opentdb.com/api.php?amount=" + amount
+export function apiGenerateURL({ numberOfQuestions, category, difficulty, type }) {
+    return "https://opentdb.com/api.php?amount=" + numberOfQuestions
         + "&category=" + category
         + "&difficulty=" + difficulty
         + "&type=" + type;

@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import { apiGenerateURL } from './api/apiURL'
 
 const initUser = () => {
     const storedUser = localStorage.getItem('user')
@@ -26,13 +27,25 @@ export default createStore({
         },
     },
     actions: {
-        async inputOptions({ commit }, { difficulty, category, numberOfQuestions }) {
-            
-            const inputs = {
-                difficulty: difficulty.value,
-                category: category.value,
-                numberOfQuestions: numberOfQuestions.value
+        async inputOptions({ commit }, { difficulty, category, type, numberOfQuestions }) {
+            // Clamp
+            if(numberOfQuestions > 10) {
+                numberOfQuestions = 10;
+                console.log(`Oops! You can not have more than ${numberOfQuestions} questions!`);
+            } else if(numberOfQuestions < 2) {
+                numberOfQuestions = 2;
+                console.log(`Oops! You can not have less than ${numberOfQuestions} questions!`);
             }
+
+            const inputs = {
+                difficulty: difficulty || "easy",
+                category: category || (Math.floor(Math.random() * 23) + 9) + "", // Random number between 9 & 32
+                type: type || "multiple",
+                numberOfQuestions: numberOfQuestions || "5"
+            }
+
+            const apiURL = apiGenerateURL(inputs);//numberOfQuestions, category, difficulty, type);
+            console.log(apiURL);
 
             commit('setInputs', inputs);
             localStorage.setItem('options', JSON.stringify(inputs));

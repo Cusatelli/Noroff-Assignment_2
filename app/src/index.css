@@ -92,6 +92,16 @@ form fieldset input {
   font-weight: bolder;
   text-transform: uppercase;
 }
+form fieldset select {
+  display: inline-block;
+  width: 100%;
+  padding: 1rem 1.2rem;
+  margin-block-end: 1rem;
+  border: 1px solid #CCC;
+  border-radius: 0.15rem;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
 
 .error {
   width: 100%;
