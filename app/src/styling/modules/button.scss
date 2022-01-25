@@ -1,0 +1,87 @@
+button {
+    padding: 1rem 3rem;
+    font-size: 2rem;
+    font-weight: bolder;
+    border: none;
+    text-transform: uppercase;
+    margin-block: 2rem;
+    background-color: #CCC;
+    color: #000;
+    box-shadow: 2px 2px 2px #000;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #EEE;
+    }
+
+    &.start,
+    &.game,
+    &.login {
+        background-color: #42b983;
+        color: #35495e;
+        box-shadow: 0 -3px #35495e;
+        
+        &:hover {
+            background-color: #4bcf94;
+        }
+    }
+}
+
+// ORIGINAL
+button {
+    padding: 1rem 3rem;
+    font-size: 2rem;
+    font-weight: bolder;
+    border: none;
+    text-transform: uppercase;
+    margin-block: 2rem;
+    background-color: #42b983;
+    color: #35495e;
+    box-shadow: 0 -3px #35495e;
+    cursor: pointer;
+}
+
+.start-button {
+    padding: 1rem 3rem;
+    font-size: 2rem;
+    font-weight: bolder;
+    border: none;
+    text-transform: uppercase;
+    margin-block: 2rem;
+    background-color: #42b983;
+    color: #35495e;
+    box-shadow: 0 -3px #35495e;
+    cursor: pointer;
+}
+
+.game-btn {
+    padding: 1rem 3rem;
+    font-size: 2rem;
+    font-weight: bolder;
+    border: none;
+    text-transform: uppercase;
+    margin-block: 2rem;
+    background-color: #42b983;
+    color: #35495e;
+    box-shadow: 0 -3px #35495e;
+    cursor: pointer;
+}
+
+.game-btn {
+    background-color: #4bcf94;
+}
+
+button:hover {
+    background-color: #4bcf94;
+}
+
+.start-button:hover {
+    background-color: #4bcf94;
+}
+
+.login-button {
+    padding: 0.75rem 2rem;
+    font-size: 1.2rem;
+    margin: 0;
+    margin-block-start: 1rem;
+}

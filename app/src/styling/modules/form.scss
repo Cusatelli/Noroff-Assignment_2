@@ -1,0 +1,60 @@
+/*** FORM ***/
+form {
+    width: 30rem;
+    border-radius: 0.2rem;
+    background-color: #F2F2F2;
+    padding: 2rem;
+
+    fieldset {
+        border: none;
+
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-block-end: 1rem;
+            padding: 1rem;
+            box-shadow: 0 3px #35495e;
+            font-weight: bolder;
+            text-transform: uppercase;
+            color: #42b983;
+        }
+        
+        input {
+            display: inline-block;
+            width: 100%;
+            padding: 1rem 1.2rem;
+            margin-block-end: 1rem;
+            border: 1px solid #CCC;
+            border-radius: 0.15rem;
+            font-weight: bolder;
+            text-transform: uppercase;
+        }
+    }
+}
+
+// ORIGINAL
+form fieldset {
+    border: none;
+}
+
+form fieldset label {
+    display: block;
+    font-size: 1.2rem;
+    margin-block-end: 1rem;
+    padding: 1rem;
+    box-shadow: 0 3px #35495e;
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: #42b983;
+}
+
+form fieldset input {
+    display: inline-block;
+    width: 100%;
+    padding: 1rem 1.2rem;
+    margin-block-end: 1rem;
+    border: 1px solid #CCC;
+    border-radius: 0.15rem;
+    font-weight: bolder;
+    text-transform: uppercase;
+}
