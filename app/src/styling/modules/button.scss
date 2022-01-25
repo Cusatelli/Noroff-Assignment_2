@@ -16,7 +16,10 @@ button {
 
     &.start,
     &.game,
-    &.login {
+    &.login,
+    &.play,
+    &.restart,
+    &.next {
         background-color: #42b983;
         color: #35495e;
         box-shadow: 0 -3px #35495e;
@@ -25,63 +28,22 @@ button {
             background-color: #4bcf94;
         }
     }
-}
 
-// ORIGINAL
-button {
-    padding: 1rem 3rem;
-    font-size: 2rem;
-    font-weight: bolder;
-    border: none;
-    text-transform: uppercase;
-    margin-block: 2rem;
-    background-color: #42b983;
-    color: #35495e;
-    box-shadow: 0 -3px #35495e;
-    cursor: pointer;
-}
+    &.restart,
+    &.next {
+        margin-inline: 0.5rem;
+    }
 
-.start-button {
-    padding: 1rem 3rem;
-    font-size: 2rem;
-    font-weight: bolder;
-    border: none;
-    text-transform: uppercase;
-    margin-block: 2rem;
-    background-color: #42b983;
-    color: #35495e;
-    box-shadow: 0 -3px #35495e;
-    cursor: pointer;
-}
+    &.restart {
+        background-color: #b9425c;
+        
+        &:hover {
+            background-color: #df5270;
+        }
+    }
 
-.game-btn {
-    padding: 1rem 3rem;
-    font-size: 2rem;
-    font-weight: bolder;
-    border: none;
-    text-transform: uppercase;
-    margin-block: 2rem;
-    background-color: #42b983;
-    color: #35495e;
-    box-shadow: 0 -3px #35495e;
-    cursor: pointer;
-}
-
-.game-btn {
-    background-color: #4bcf94;
-}
-
-button:hover {
-    background-color: #4bcf94;
-}
-
-.start-button:hover {
-    background-color: #4bcf94;
-}
-
-.login-button {
-    padding: 0.75rem 2rem;
-    font-size: 1.2rem;
-    margin: 0;
-    margin-block-start: 1rem;
+    .buttons {
+        display: flex;
+        flex-direction: row;
+    }
 }

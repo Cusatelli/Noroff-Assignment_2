@@ -14,12 +14,6 @@ const difficulty = ref('');
 const category = ref('');
 const numberOfQuestions = ref('');
 
-// const selected = reactive({
-//     difficulty: "",
-//     category: "",
-//     numOfQuestion: 1
-// })
-
 //change to api
 const difficulties = [{ id: 1, name: "Easy" }, { id: 2, name: "Medium" }, { id: 3, name: "Hard" }];
 
@@ -32,8 +26,8 @@ function onPlay() {
 </script>
 
 <template>
-    <div class="option-container">
-        <h1>options</h1>
+    <div class="container options">
+        <h2>Options</h2>
         <form>
             <fieldset>
                 <label for="difficulty">Difficulty</label>
@@ -72,7 +66,7 @@ function onPlay() {
             </fieldset>
 
             <div>
-                <button type="button" class="start-button" @click="onPlay">Play</button>
+                <button type="button" class="play" @click="onPlay">Play</button>
             </div>
         </form>
     </div>

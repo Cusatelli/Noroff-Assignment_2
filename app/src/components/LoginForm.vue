@@ -23,17 +23,17 @@ const onLoginClick = async (action) => {
 </script>
 
 <template>
-    <div class="login-form-container">
-        <h1 class="login-title">Login</h1>
+    <div class="container form">
+        <h2>Login</h2>
         <form>
             <fieldset>
                 <label for="username" area-label="Username">Username</label>
                 <input type="text" id="username" placeholder="John Doe" v-model="username" />
             </fieldset>
-            <button @click="onLoginClick('login')" type="button" class="login-button">Login</button>
+            <button @click="onLoginClick('login')" type="button" class="login">Login</button>
         </form>
-        <div v-if="displayError" class="error-container">
-            <span class="error-message">Error</span>
+        <div v-if="displayError" class="error">
+            <span class="message">Error</span>
             <p>{{ displayError }}</p>
         </div>
     </div>
