@@ -2,7 +2,7 @@
 
 function onPlay() {
     console.log("Go to game");
-    router.push('/Game');
+    router.push('/game');
 }
 </script>
 
