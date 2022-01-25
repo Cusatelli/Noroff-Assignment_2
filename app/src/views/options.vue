@@ -11,9 +11,6 @@ fetch("https://opentdb.com/api_category.php")
     .then(response => response.json())
     .then(data => data.trivia_categories).then((newCategories) => { categories.value = newCategories });
 
-
-
-
 const selected = reactive({
     difficulty: "",
     category: "",
@@ -21,7 +18,6 @@ const selected = reactive({
 })
 //change to api
 const difficulties = [{ id: 1, name: "Easy" }, { id: 2, name: "Medium" }, { id: 3, name: "Hard" }];
-
 
 function onPlay() {
     const inputs = selected;
