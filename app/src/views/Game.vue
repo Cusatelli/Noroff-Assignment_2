@@ -16,8 +16,7 @@
     </div>
 
     <div class="footer-quiz">
-        <div v-if="progress < 100" class="box-button">
-            <button class="game-btn">Skip</button>
+        <div class="box-button">
             <button class="game-btn" >Next</button>
         </div>  
     </div>           
