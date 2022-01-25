@@ -10,9 +10,9 @@ function goToLogin() {
 </script>
 
 <template>
-    <div class="start-container">
-        <img alt="Trivia Logo" src="../assets/logo.png" class="app-logo" />
-        <button class="start-button" @click="goToLogin">Start</button>
+    <div class="container start">
+        <img alt="Trivia Logo" src="../assets/logo.png" class="logo" />
+        <button class="start" @click="goToLogin">Start</button>
     </div>
 </template>
 

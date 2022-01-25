@@ -1,25 +1,10 @@
 <template>
-  <div class="game-container">
-
-    <div class="container-quiz">
-        <div class="header-trivia">
-            <h1>Trivia Game</h1>
-        </div>
-    </div>
-
-    <div>
-        <h2>Result</h2>
-        <h2>1p</h2>
-        <div class="btn-restart">
-            <button>Restart</button>
-        </div>
-    </div>
-
-    <div class="footer-quiz">
-        <div class="box-button">
-            <button class="game-btn" >Next</button>
-        </div>  
-    </div>           
+  <div class="container game">
+    <h2>Score: 1P</h2>
+    <div class="buttons">
+        <button class="restart">Restart</button>
+        <button class="next">Next</button> 
+    </div> 
 </div>
 </template>
 

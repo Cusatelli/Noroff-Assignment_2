@@ -1,5 +1,5 @@
-
 .error {
+    width: 100%;
     background-color: #993131;
     color: #FFF;
     padding: 1rem 2rem;
@@ -15,23 +15,4 @@
     p {
         font-size: 1rem;
     }
-}
-
-// ORIGINAL
-.error-container {
-    background-color: #993131;
-    color: #FFF;
-    padding: 1rem 2rem;
-    border-radius: 0.2rem;
-}
-
-.error-container .error-message {
-    display: block;
-    margin-block-end: 1rem;
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-.error-container p {
-    font-size: 1rem;
 }
