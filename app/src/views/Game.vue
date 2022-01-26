@@ -15,21 +15,30 @@ export default {
 		const question = ref('')
 		let index = 0
 
+		/**
+		 * Setup composition api
+		 */
 		onMounted(async () => {
 			console.log('Mounted')
 			question.value = 'Loading...'
 			const options = JSON.parse(localStorage.getItem('options'))
 
+			/**
+			 * Fetching options numberOfQuestions, category, difficulty and type from api
+			 */
 			await fetch(apiGenerateURL(options))
 				.then(response => response.json())
 				.then(results => {
-					// results will be an array of users that match the username of mega-mind.
+					// Results will be an array of users that match the username of input.
 					questions.value = results.results
-
 					setQuestion(0)
 				})
 		})
 
+		/**
+		 * Helper function that sets the value for elements 
+		 * @param {Number} index 
+		 */
 		function setQuestion(index) {
 			if (!questions.value[index].question) {
 				console.error('Oops! Something went wrong, please try again.')
@@ -41,6 +50,10 @@ export default {
 			correctAnswers.value.push(questions.value[index].correct_answer)
 		}
 
+		/**
+		 * This function is to jump to next question each time or to skip current question
+		 * @param {Number} answer 
+		 */
 		function nextQuestion(answer) {
 			console.log('next')
 			if (answer) { // Always add answer
@@ -51,23 +64,21 @@ export default {
 				console.log(answers.value)
 			}
 
+			/**
+			 * Compare answers and correct answers.
+			 */
 			const nextQuestion = questions.value[++index]
 			if (nextQuestion) {
 				setQuestion(index)
 				console.log(correctAnswers.value)
 			} else {
-				// Compare answers and correct answers.
-				// let results = 0
-				// for (let index = 0 index < correctAnswers.value.length index++) {
-				// 	const correctAnswer = correctAnswers.value[index]
-				// 	const answer = answers.value[index]
-				// 	if (correctAnswer === answer) {
-				// 		results += 10
-				// 	}
-				// }
 
-				// Go to results screen
-				// router.push('/results')
+				/**
+				 * Loops throu the questions
+				 * and pushes the value,
+				 * dispatching gameResults with questions, answers and users correct answers,
+				 * and pushes to results page
+				 */
 				let questionsQuestion = []
 				for (let index = 0; index < questions.value.length; index++) {
 					questionsQuestion.push(questions.value[index].question)
@@ -79,11 +90,14 @@ export default {
 				}).then(() => {
 					router.push('/results')
 				})
-				// console.log('Results ' + results + ' Points')
+
 				return question.value
 			}
 		}
 
+		/**
+		 * returns exposed values to template in vue
+		 */
 		return {
 			question,
 			alternatives,
