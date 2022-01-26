@@ -18,7 +18,7 @@ export default createStore({
         results: null
     },
     getters: {
-
+        
     },
     mutations: {
         setUser: (state, user) => {
@@ -73,7 +73,7 @@ export default createStore({
         },
         async updateUserInfo({ commit }, { userID, highScore }) {
             try {
-                fetch(`${API_URL}/trivia/${userID}`, {
+                await fetch(`${API_URL}/trivia/${userID}`, {
                     method: 'PATCH', // NB: Set method to PATCH
                     headers: {
                         'X-API-Key': API_KEY,
@@ -81,7 +81,7 @@ export default createStore({
                     },
                     body: JSON.stringify({
                         // Provide new highScore to add to user with id 1
-                        highScore: 0
+                        highScore
                     })
                 })
                 .then(response => {
@@ -92,9 +92,16 @@ export default createStore({
                 })
                 .then(updatedUser => {
                     // updatedUser is the user with the Patched data
+                    commit('setUser', updatedUser);
+                    return null;
                 })
+                .catch(error => {
+                    throw new Error(error);
+                })
+
+                return null
             } catch (error) {
-                return error.message;
+                return error.message
             }
         },
         async loginUser({ commit }, { action, username }) {
@@ -103,14 +110,15 @@ export default createStore({
                     throw new Error('login | unknown action provided: [' + action + ']')
                 }
 
-                const user = fetch(`${API_URL}/trivia?username=${username.value}`)
+                await fetch(`${API_URL}/trivia?username=${username.value}`)
                     .then(response => response.json())
                     .then(results => {
                         // results will be an array of users that match the username of mega-mind.
                         console.log(results);
                         if (results.length > 0) {
                             // Login as that user
-                            return username.value;
+                            commit('setUser', results) // commit = mutations
+                            return null;
                         } else {
                             // Create and login user
                             fetch(`${API_URL}/trivia`, {
@@ -130,15 +138,18 @@ export default createStore({
                                 }
                                 return response.json()
                             })
-                            .then(newUser => newUser)
+                            .then(newUser => {
+                                commit('setUser', newUser) // commit = mutations
+                                return null;
+                            })
                             .catch(error => {
-                                
+                                throw new Error(error);
                             })
                         }
                     })
-
-                console.log(user);
-                commit('setUser', user) // commit = mutations
+                    .catch(error => {
+                        throw new Error(error);
+                    })
 
                 return null
             } catch (error) {
