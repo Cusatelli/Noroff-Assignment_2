@@ -9,9 +9,9 @@ const results = ref([]);
 const questions = ref([]);
 const correctAnswers = ref([]);
 const answers = ref([]);
+const score = ref("");
 const highscore = ref("");
-
-const correct = ref("")
+const correct = ref("");
     
 function restart() {
     router.push('/game');
@@ -21,19 +21,39 @@ function exit() {
     router.push('/');
 }
 
-onMounted(() => {
+onMounted(async () => {
     results.value = store.state.results;
     questions.value = results.value.questions;
     correctAnswers.value = results.value.correctAnswers;
     answers.value = results.value.answers;
-    highscore.value = results.value.results;
-})
+    score.value = results.value.results;
+    highscore.value = store.state.user[0].highScore;
 
+    // Check highscore from API
+    if(store.state.user) {
+        // Example
+        // user: Array[1]
+        //     0: Object
+        //         highscore: 0
+        //         id: 16
+        //         username: "machinist"
+
+        // Check highscore if it is higher.
+        if(highscore.value < score.value) {
+            highscore.value = score.value;
+            const error = store.dispatch('updateUserInfo', {
+                userID: store.state.user[0].id,
+                highScore: score.value
+            });
+        }
+    }
+})
 </script>
 
 <template>
     <div class="container results">
-        <h2>Score: {{ highscore }}P</h2>
+        <h2>Score: {{ score }}P</h2>
+        <p>Highscore: {{ highscore }}P</p>
 		<ul class="questions">
             <li v-for="(question, index) in questions"
                 :key="index"    
