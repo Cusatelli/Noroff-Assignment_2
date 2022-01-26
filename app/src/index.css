@@ -47,22 +47,28 @@ button {
 button:hover {
   background-color: #EEE;
 }
-button.start, button.game, button.login, button.play, button.restart, button.next {
+button.start, button.game, button.login, button.play, button.restart, button.exit, button.next {
   background-color: #42b983;
   color: #35495e;
   box-shadow: 0 -3px #35495e;
 }
-button.start:hover, button.game:hover, button.login:hover, button.play:hover, button.restart:hover, button.next:hover {
+button.start:hover, button.game:hover, button.login:hover, button.play:hover, button.restart:hover, button.exit:hover, button.next:hover {
   background-color: #4bcf94;
 }
 button.restart, button.next {
   margin-inline: 0.5rem;
 }
-button.restart {
+button.exit {
   background-color: #b9425c;
 }
-button.restart:hover {
+button.exit:hover {
   background-color: #df5270;
+}
+button.restart {
+  background-color: #c7bf4b;
+}
+button.restart:hover {
+  background-color: #dfd652;
 }
 button .buttons {
   display: flex;

@@ -19,6 +19,7 @@ button {
     &.login,
     &.play,
     &.restart,
+    &.exit,
     &.next {
         background-color: #42b983;
         color: #35495e;
@@ -34,11 +35,19 @@ button {
         margin-inline: 0.5rem;
     }
 
-    &.restart {
+    &.exit {
         background-color: #b9425c;
         
         &:hover {
             background-color: #df5270;
+        }
+    }
+
+    &.restart {
+        background-color: #c7bf4b;
+        
+        &:hover {
+            background-color: #dfd652;
         }
     }
 
