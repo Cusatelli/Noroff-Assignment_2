@@ -6,7 +6,7 @@ import Options from './views/Options.vue'
 import Game from './views/Game.vue'
 import Results from './views/Results.vue'
 
-const authGuard = (_to, _from, next) => {
+const loginGuard = (_to, _from, next) => {
     if(store.state.user) {
         next('/options')
     } else {
@@ -22,7 +22,7 @@ const routes = [
     {
         path: "/login", // For users
         component: Login, // For devs
-        beforeEnter: authGuard
+        beforeEnter: loginGuard
     },
     {
         path: "/options", // Options
