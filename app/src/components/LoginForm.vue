@@ -8,6 +8,11 @@ const emit = defineEmits(['onAuthSuccess'])
 const username = ref('')
 const displayError = ref('')
 
+/**
+ * click event for user to login, it takes only username as input,
+ * func uses error handler for onAutherized user
+ * @param {String} action 
+ */
 const onLoginClick = async (action) => {
     const error = await store.dispatch('loginUser', {
         action,
