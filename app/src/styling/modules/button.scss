@@ -47,3 +47,24 @@ button {
         flex-direction: row;
     }
 }
+
+ul {
+    &.questions {
+        width: 100%;
+        padding-inline: 2rem;
+    
+        li {
+            list-style: none;
+            width: 100%;
+            
+            &.button {
+                cursor: pointer;
+                background-color: #42b983;
+                margin-block: 0.5rem;
+                padding: 0.5rem;
+                text-align: center;
+                border-radius: 0.2rem;
+            }
+        }
+    }
+}
