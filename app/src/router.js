@@ -1,32 +1,53 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Start from './views/Start.vue';
-import Login from './views/Login.vue';
-import store from './store';
+import { createRouter, createWebHistory } from 'vue-router'
+import Start from './views/Start.vue'
+import Login from './views/Login.vue'
+import store from './store'
 import Options from './views/Options.vue'
 import Game from './views/Game.vue'
 import Results from './views/Results.vue'
 
+/**
+ * Function that checks if user is stored and if thats the case
+ * user is passed to next page, 
+ * @param {*} _to 
+ * @param {*} _from 
+ * @param {*} next 
+ */
 const loginGuard = (_to, _from, next) => {
-    if(store.state.user) {
+    if (store.state.user) {
         next('/options')
     } else {
         next()
     }
 }
 
+/**
+ * Function that checks if options are made and are stored and if thats the case
+ * user is passed to next page, 
+ * @param {*} _to 
+ * @param {*} _from 
+ * @param {*} next 
+ */
 const optionsGuard = (_to, _from, next) => {
-    if(!store.state.user) {
+    if (!store.state.user) {
         next('/login')
     } else {
         next()
     }
 }
 
+/**
+ * If user ends Game, 
+ * user is passed to login page or options, 
+ * @param {*} _to 
+ * @param {*} _from 
+ * @param {*} next 
+ */
 const gameGuard = (_to, _from, next) => {
-    if(!store.state.user) {
+    if (!store.state.user) {
         next('/login')
     } else {
-        if(!store.state.inputs) {
+        if (!store.state.inputs) {
             next('/options')
         } else {
             next()
@@ -34,11 +55,18 @@ const gameGuard = (_to, _from, next) => {
     }
 }
 
+/**
+ * If result screen is displayed, 
+ * user is passed to login page or options, 
+ * @param {*} _to 
+ * @param {*} _from 
+ * @param {*} next 
+ */
 const resultsGuard = (_to, _from, next) => {
-    if(!store.state.user) {
+    if (!store.state.user) {
         next('/login')
     } else {
-        if(!store.state.results) {
+        if (!store.state.results) {
             next('/options')
         } else {
             next()
@@ -46,6 +74,9 @@ const resultsGuard = (_to, _from, next) => {
     }
 }
 
+/**
+ * routes to all different path is stored in here
+ */
 const routes = [
     {
         path: "/",
@@ -71,12 +102,7 @@ const routes = [
         component: Results,
         beforeEnter: resultsGuard
     }
-    // Example:
-    // {
-    //     path: "/profile",
-    //     component: Profile,
-    //     beforeEnter: authGuard
-    // }
+
 ]
 
 export default createRouter(
