@@ -1,16 +1,48 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Start from './views/Start.vue';
-import AuthGuard from './views/AuthGuard.vue';
+import Login from './views/Login.vue';
 import store from './store';
 import Options from './views/Options.vue'
 import Game from './views/Game.vue'
 import Results from './views/Results.vue'
 
-const authGuard = (_to, _from, next) => {
+const loginGuard = (_to, _from, next) => {
     if(store.state.user) {
         next('/options')
     } else {
         next()
+    }
+}
+
+const optionsGuard = (_to, _from, next) => {
+    if(!store.state.user) {
+        next('/login')
+    } else {
+        next()
+    }
+}
+
+const gameGuard = (_to, _from, next) => {
+    if(!store.state.user) {
+        next('/login')
+    } else {
+        if(!store.state.inputs) {
+            next('/options')
+        } else {
+            next()
+        }
+    }
+}
+
+const resultsGuard = (_to, _from, next) => {
+    if(!store.state.user) {
+        next('/login')
+    } else {
+        if(!store.state.results) {
+            next('/options')
+        } else {
+            next()
+        }
     }
 }
 
@@ -21,20 +53,23 @@ const routes = [
     },
     {
         path: "/login", // For users
-        component: AuthGuard, // For devs
-        beforeEnter: authGuard
+        component: Login, // For devs
+        beforeEnter: loginGuard
     },
     {
-        path: "/options", // Options
-        component: Options // Options
+        path: "/options",
+        component: Options,
+        beforeEnter: optionsGuard
     },
     {
-        path: "/game", // game
-        component: Game // Game
+        path: "/game",
+        component: Game,
+        beforeEnter: gameGuard
     },
     {
-        path: "/results", // results
-        component: Results // Results
+        path: "/results",
+        component: Results,
+        beforeEnter: resultsGuard
     }
     // Example:
     // {
