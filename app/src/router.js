@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import Start from './views/Start.vue';
-import AuthGuard from './views/AuthGuard.vue';
+import Login from './views/Login.vue';
 import store from './store';
 import Options from './views/Options.vue'
 import Game from './views/Game.vue'
@@ -21,7 +21,7 @@ const routes = [
     },
     {
         path: "/login", // For users
-        component: AuthGuard, // For devs
+        component: Login, // For devs
         beforeEnter: authGuard
     },
     {
