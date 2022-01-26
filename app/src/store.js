@@ -13,7 +13,8 @@ const initUser = () => {
 export default createStore({
     state: {
         user: initUser(),
-        inputs: {}
+        inputs: {},
+        questions: {}
     },
     getters: {
 
@@ -25,6 +26,9 @@ export default createStore({
         setInputs: (state, inputs) => {
             state.inputs = inputs
         },
+        setQuestions: (state, questions) => {
+            state.questions = questions
+        }
     },
     actions: {
         async inputOptions({ commit }, { difficulty, category, type, numberOfQuestions }) {
@@ -45,9 +49,6 @@ export default createStore({
                 type: type || "multiple",
                 numberOfQuestions: numberOfQuestions || "5"
             }
-
-            const apiURL = apiGenerateURL(inputs);//numberOfQuestions, category, difficulty, type);
-            console.log(apiURL);
 
             commit('setInputs', inputs);
             localStorage.setItem('options', JSON.stringify(inputs));
