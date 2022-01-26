@@ -5,15 +5,16 @@
     background-color: #FFF;
     width: 30rem;
     margin-inline: auto;
+    margin-block: 2rem;
     padding-block: 2rem;
     border-radius: 1rem;
 
     &.start,
     &.options,
     &.game,
+    &.results,
     &.login,
     &.form {
-        margin-block-start: 2rem;
         background-color: #F2F2F2;
         border-radius: 0.2rem;
     }
