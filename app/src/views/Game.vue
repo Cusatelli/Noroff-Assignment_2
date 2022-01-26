@@ -2,17 +2,22 @@
 import { useStore } from 'vuex';
 import { onMounted, ref } from 'vue'
 import { apiGenerateURL } from '../api/apiURL';
+import { useRouter } from 'vue-router';
 
 export default {
 	setup() {
 		const store = useStore();
+		const router = useRouter();
 		const questions = ref([]);
+		const alternatives = ref([]);
 		const answers = ref([]);
+		const correctAnswers = ref([]);
 		const question = ref("");
 		let index = 0;
 
 		onMounted(async () => {
 			console.log("Mounted")
+			question.value = "Loading..."
 			const options = JSON.parse(localStorage.getItem('options'));
 
 			await fetch(apiGenerateURL(options))
@@ -20,28 +25,57 @@ export default {
 				.then(results => {
 					// results will be an array of users that match the username of mega-mind.
 					questions.value = results.results;
-					localStorage.setItem('questions', questions.value)
-					question.value = questions.value[0].question;
-					answers.value = questions.value[0].incorrect_answers
-					answers.value.push(questions.value[0].correct_answer);
+
+					setQuestion(0);
 				});
 		})
 
-		function nextQuestion() {
+		function setQuestion(index) {
+			question.value = questions.value[index].question;
+			alternatives.value = questions.value[index].incorrect_answers
+			alternatives.value.push(questions.value[index].correct_answer);
+			correctAnswers.value.push(questions.value[index].correct_answer);
+		}
+
+		function nextQuestion(answer) {
 			console.log("next")
-			const quest = questions.value[++index];
-			if(quest) {
-				question.value = quest.question;
+			if(answer) { // Always add answer
+				answers.value.push(answer);
+				console.log(answers.value);
+			} else { // if i.e skip is pressed
+				answers.value.push(null);
+				console.log(answers.value);
+			}
+			
+			const nextQuestion = questions.value[++index];
+			if(nextQuestion) {
+				setQuestion(index);
+				console.log(correctAnswers.value);
 			} else {
+				// Compare answers and correct answers.
+				let results = 0;
+				for (let index = 0; index < correctAnswers.value.length; index++) {
+					const correctAnswer = correctAnswers.value[index];
+					const answer = answers.value[index];
+					if(correctAnswer === answer) {
+						results += 10;
+					}
+				}
+				
 				// Go to results screen
+				router.push('/');
+				// store.dispatch("resultsToResults", { answers: answers.value, correctAnswers: correctAnswers.value, results })
+				// 	.then(() => {
+				// 		router.push('/results');
+				// 	})
+				console.log("Results " + results + " Points")
 				return question.value;
 			}
 		}
 
 		return {
-			questions,
-			answers,
 			question,
+			alternatives,
 			nextQuestion
 		}
 	}
@@ -49,15 +83,15 @@ export default {
 </script>
 
 <template>
-	<div class="container game" onload="fetchAPIQuestions">
+	<div class="container game">
 		<h2>{{ question }}</h2>
 		<ul class="questions">
-			<li	v-for="(answer, index) in answers"
+			<li	v-for="(answer, index) in alternatives"
 				:key="index"
-				:value="answer" class="button" @click="nextQuestion">
+				:value="answer" class="button" @click="nextQuestion(answer)">
 				{{ answer }}
 			</li>
 		</ul>
-		<button class="next" @click="nextQuestion">Skip</button>
+		<button class="next" @click="nextQuestion(null)">Skip</button>
 	</div>
 </template>
