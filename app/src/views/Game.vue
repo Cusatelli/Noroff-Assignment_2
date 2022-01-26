@@ -32,6 +32,11 @@ export default {
 
 		function setQuestion(index) {
 			question.value = questions.value[index].question;
+			if(!question.value) {
+				console.error("Oops! Something went wrong, please try again.");
+				router.push(options);
+			}
+
 			alternatives.value = questions.value[index].incorrect_answers
 			alternatives.value.push(questions.value[index].correct_answer);
 			correctAnswers.value.push(questions.value[index].correct_answer);
@@ -63,7 +68,7 @@ export default {
 				}
 				
 				// Go to results screen
-				router.push('/');
+				router.push('/results');
 				// store.dispatch("resultsToResults", { answers: answers.value, correctAnswers: correctAnswers.value, results })
 				// 	.then(() => {
 				// 		router.push('/results');
