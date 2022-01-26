@@ -25,6 +25,12 @@ html, body {
   background-color: #F2F2F2;
   border-radius: 0.2rem;
 }
+.container.game h2 {
+  margin-inline: 2rem;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-block-end: 2rem;
+}
 
 button {
   padding: 1rem 3rem;
@@ -61,6 +67,23 @@ button.restart:hover {
 button .buttons {
   display: flex;
   flex-direction: row;
+}
+
+ul.questions {
+  width: 100%;
+  padding-inline: 2rem;
+}
+ul.questions li {
+  list-style: none;
+  width: 100%;
+}
+ul.questions li.button {
+  cursor: pointer;
+  background-color: #42b983;
+  margin-block: 0.5rem;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 0.2rem;
 }
 
 form {

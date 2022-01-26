@@ -51,7 +51,7 @@ export default {
 <template>
 	<div class="container game" onload="fetchAPIQuestions">
 		<h2>{{ question }}</h2>
-		<ul>
+		<ul class="questions">
 			<li	v-for="(answer, index) in answers"
 				:key="index"
 				:value="answer" class="button" @click="nextQuestion">
