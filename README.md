@@ -135,7 +135,11 @@ We had trouble linking this repository to the Heroku CLI so we resorted to makin
 On the other hand we do not have access to the /trivia db.json file in our demo so you will be greeted with an error when trying to log in, therefore we recommend you try the app in your local environment.
 
 If you want to use the demo make sure you have `user | {"username":"John Doe"}` in your local storage.
-Lastly you will be greeted by another error when trying to read highscore from the API. However your local score should still be recorded with right and wrong answers highlighted. Thank you for your patience!
+Lastly you will be greeted by another error when trying to read highscore from the API.
+Your local score should still be recorded with right and wrong answers highlighted.
+However, sometimes your are forced to wait a while which might cause your browser to ask you to close your tab. Please do so and relaunch the app. Now it should be playable all the way to the end.
+
+Thank you for your patience!
 
 <a href="https://vue-3-heroku-deploy.herokuapp.com/">View Demo</a>
 
