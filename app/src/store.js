@@ -14,7 +14,8 @@ export default createStore({
     state: {
         user: initUser(),
         inputs: {},
-        questions: {}
+        questions: {},
+        results: {}
     },
     getters: {
 
@@ -28,9 +29,26 @@ export default createStore({
         },
         setQuestions: (state, questions) => {
             state.questions = questions
+        },
+        setResults: (state, results) => {
+            state.results = results
         }
     },
     actions: {
+        async gameResults({ commit }, { questions, answers, correctAnswers }) {
+            // Compare answers and correct answers.
+            let results = 0;
+            for (let index = 0; index < correctAnswers.length; index++) {
+            const correctAnswer = correctAnswers[index];
+                const answer = answers[index];
+                if (correctAnswer === answer) {
+                    results += 10;
+                }
+            }
+
+            const gameResults = { questions, answers, correctAnswers, results };
+            commit('setResults', gameResults);
+        },
         async inputOptions({ commit }, { difficulty, category, type, numberOfQuestions }) {
             // Clamp
             if (numberOfQuestions > 10) {

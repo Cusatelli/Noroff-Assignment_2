@@ -4,6 +4,7 @@ import AuthGuard from './views/AuthGuard.vue';
 import store from './store';
 import Options from './views/Options.vue'
 import Game from './views/Game.vue'
+import Results from './views/Results.vue'
 
 const authGuard = (_to, _from, next) => {
     if(store.state.user) {
@@ -30,6 +31,10 @@ const routes = [
     {
         path: "/game", // game
         component: Game // Game
+    },
+    {
+        path: "/results", // results
+        component: Results // Results
     }
     // Example:
     // {
