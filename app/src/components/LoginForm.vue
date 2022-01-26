@@ -9,6 +9,10 @@ const username = ref('')
 const displayError = ref('')
 
 const onLoginClick = async (action) => {
+    if(username.value < 1) {
+        alert("Please enter your username!")
+        return;
+    }
     const error = await store.dispatch('loginUser', {
         action,
         username
@@ -28,7 +32,7 @@ const onLoginClick = async (action) => {
         <form>
             <fieldset>
                 <label for="username" area-label="Username">Username</label>
-                <input type="text" id="username" placeholder="John Doe" v-model="username" />
+                <input type="text" id="username" min="1" placeholder="John Doe" v-model="username" />
             </fieldset>
             <button @click="onLoginClick('login')" type="button" class="login">Login</button>
         </form>
