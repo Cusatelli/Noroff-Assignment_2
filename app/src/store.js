@@ -13,9 +13,9 @@ const initUser = () => {
 export default createStore({
     state: {
         user: initUser(),
-        inputs: {},
-        questions: {},
-        results: {}
+        inputs: null,
+        questions: null,
+        results: null
     },
     getters: {
 
