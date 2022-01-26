@@ -1,34 +1,45 @@
 <script setup>
-import { useStore } from 'vuex';
+import { useStore } from 'vuex'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router';
-const store = useStore();
+import { useRouter } from 'vue-router'
+const store = useStore()
 
-const router = useRouter();
-const categories = ref([]);
-fetch("https://opentdb.com/api_category.php")
+const router = useRouter()
+const categories = ref([])
+/**
+ * Fetching category from opentdb api and saving the value
+ */
+fetch('https://opentdb.com/api_category.php')
     .then(response => response.json())
-    .then(data => data.trivia_categories).then((newCategories) => { categories.value = newCategories });
+    .then(data => data.trivia_categories).then((newCategories) => { categories.value = newCategories })
 
-const difficulty = ref('');
-const category = ref('');
-const type = ref('');
-const numberOfQuestions = ref('');
+/**
+ * declared the types needed for this game
+ */
+const difficulty = ref('')
+const category = ref('')
+const type = ref('')
+const numberOfQuestions = ref('')
 
-//change to api
-const difficulties = [{ id: 1, name: "easy" }, { id: 2, name: "medium" }, { id: 3, name: "hard" }];
-const types = [{ id: 1, name: "multiple choice" }, { id: 2, name: "true / false" }];
+/**
+ * sets difficulty and types manually
+ */
+const difficulties = [{ id: 1, name: 'easy' }, { id: 2, name: 'medium' }, { id: 3, name: 'hard' }]
+const types = [{ id: 1, name: 'multiple choice' }, { id: 2, name: 'true / false' }]
 
+/**
+ * OnClick function, dispatching inputs value to game page
+ */
 function onPlay() {
     const options = {
-        difficulty: difficulty.value,// !== "" ? difficulty.value : "easy",
+        difficulty: difficulty.value,
         category: category.value,
         type: type.value,
         numberOfQuestions: numberOfQuestions.value
-    };
-    store.dispatch("inputOptions", options)
+    }
+    store.dispatch('inputOptions', options)
         .then(() => {
-            router.push('/game');
+            router.push('/game')
         })
 }
 </script>
