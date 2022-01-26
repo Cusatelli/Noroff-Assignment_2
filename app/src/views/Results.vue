@@ -28,7 +28,7 @@ function exit() {
 }
 
 /**
- *  adds user choices to users result
+ *  Adds user choices to users result
  */
 onMounted(async () => {
     results.value = store.state.results

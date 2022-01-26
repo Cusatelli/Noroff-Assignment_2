@@ -6,6 +6,7 @@ const store = useStore()
 
 const router = useRouter()
 const categories = ref([])
+
 /**
  * Fetching category from opentdb api and saving the value
  */
@@ -14,7 +15,7 @@ fetch('https://opentdb.com/api_category.php')
     .then(data => data.trivia_categories).then((newCategories) => { categories.value = newCategories })
 
 /**
- * declared the types needed for this game
+ * Declared the types needed for this game
  */
 const difficulty = ref('')
 const category = ref('')
@@ -22,7 +23,7 @@ const type = ref('')
 const numberOfQuestions = ref('')
 
 /**
- * sets difficulty and types manually
+ * Sets difficulty and types manually
  */
 const difficulties = [{ id: 1, name: 'easy' }, { id: 2, name: 'medium' }, { id: 3, name: 'hard' }]
 const types = [{ id: 1, name: 'multiple choice' }, { id: 2, name: 'true / false' }]
