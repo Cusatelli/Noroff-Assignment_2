@@ -17,13 +17,19 @@ html, body {
   background-color: #FFF;
   width: 30rem;
   margin-inline: auto;
+  margin-block: 2rem;
   padding-block: 2rem;
   border-radius: 1rem;
 }
-.container.start, .container.options, .container.game, .container.login, .container.form {
-  margin-block-start: 2rem;
+.container.start, .container.options, .container.game, .container.results, .container.login, .container.form {
   background-color: #F2F2F2;
   border-radius: 0.2rem;
+}
+.container.game h2 {
+  margin-inline: 2rem;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-block-end: 2rem;
 }
 
 button {
@@ -41,22 +47,28 @@ button {
 button:hover {
   background-color: #EEE;
 }
-button.start, button.game, button.login, button.play, button.restart, button.next {
+button.start, button.game, button.login, button.play, button.restart, button.exit, button.next {
   background-color: #42b983;
   color: #35495e;
   box-shadow: 0 -3px #35495e;
 }
-button.start:hover, button.game:hover, button.login:hover, button.play:hover, button.restart:hover, button.next:hover {
+button.start:hover, button.game:hover, button.login:hover, button.play:hover, button.restart:hover, button.exit:hover, button.next:hover {
   background-color: #4bcf94;
 }
 button.restart, button.next {
   margin-inline: 0.5rem;
 }
-button.restart {
+button.exit {
   background-color: #b9425c;
 }
-button.restart:hover {
+button.exit:hover {
   background-color: #df5270;
+}
+button.restart {
+  background-color: #c7bf4b;
+}
+button.restart:hover {
+  background-color: #dfd652;
 }
 button .buttons {
   display: flex;
@@ -118,6 +130,47 @@ form fieldset select {
 }
 .error p {
   font-size: 1rem;
+}
+
+ul.questions {
+  width: 100%;
+  padding-inline: 2rem;
+}
+ul.questions li {
+  list-style: none;
+  width: 100%;
+}
+ul.questions li.button {
+  cursor: pointer;
+  background-color: #42b983;
+  margin-block: 0.5rem;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 0.2rem;
+}
+ul.questions li .question {
+  font-size: 1.25rem;
+  margin-block-start: 3rem;
+  margin-block-end: 1rem;
+}
+ul.questions li .label {
+  margin-block: 0.5rem;
+}
+ul.questions li .answer {
+  text-transform: uppercase;
+  font-weight: bolder;
+}
+ul.questions li .answer .correct {
+  background-color: #42b983;
+  padding: 1rem;
+  border-radius: 0.2rem;
+  color: #FFF;
+}
+ul.questions li .answer .incorrect {
+  background-color: #b9425c;
+  padding: 1rem;
+  border-radius: 0.2rem;
+  color: #FFF;
 }
 
 h2 {

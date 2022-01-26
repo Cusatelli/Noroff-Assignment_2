@@ -1,5 +1,5 @@
 import { createStore } from 'vuex'
-import { apiGenerateURL } from './api/apiURL'
+import { API_KEY, API_URL } from './api'
 
 const initUser = () => {
     const storedUser = localStorage.getItem('user')
@@ -13,10 +13,12 @@ const initUser = () => {
 export default createStore({
     state: {
         user: initUser(),
-        inputs: {}
+        inputs: null,
+        questions: null,
+        results: null
     },
     getters: {
-
+        
     },
     mutations: {
         setUser: (state, user) => {
@@ -25,17 +27,39 @@ export default createStore({
         setInputs: (state, inputs) => {
             state.inputs = inputs
         },
+        setQuestions: (state, questions) => {
+            state.questions = questions
+        },
+        setResults: (state, results) => {
+            state.results = results
+        }
     },
     actions: {
+        async gameResults({ commit }, { questions, answers, correctAnswers }) {
+            // Compare answers and correct answers.
+            let results = 0;
+            for (let index = 0; index < correctAnswers.length; index++) {
+                const correctAnswer = correctAnswers[index];
+                const answer = answers[index];
+                if (correctAnswer === answer) {
+                    results += 10;
+                }
+            }
+
+            const gameResults = { questions, answers, correctAnswers, results };
+            commit('setResults', gameResults);
+        },
         async inputOptions({ commit }, { difficulty, category, type, numberOfQuestions }) {
             // Clamp
-            if(numberOfQuestions > 10) {
+            if (numberOfQuestions > 10) {
                 numberOfQuestions = 10;
                 console.log(`Oops! You can not have more than ${numberOfQuestions} questions!`);
-            } else if(numberOfQuestions < 2) {
+            } else if (numberOfQuestions < 2) {
                 numberOfQuestions = 2;
                 console.log(`Oops! You can not have less than ${numberOfQuestions} questions!`);
             }
+            if (type === "multiple choice") { type = "multiple"; }
+            else { type = "boolean"; }
 
             const inputs = {
                 difficulty: difficulty || "easy",
@@ -44,11 +68,41 @@ export default createStore({
                 numberOfQuestions: numberOfQuestions || "5"
             }
 
-            const apiURL = apiGenerateURL(inputs);//numberOfQuestions, category, difficulty, type);
-            console.log(apiURL);
-
             commit('setInputs', inputs);
             localStorage.setItem('options', JSON.stringify(inputs));
+        },
+        async updateUserInfo({ commit }, { userID, highScore }) {
+            try {
+                await fetch(`${API_URL}/trivia/${userID}`, {
+                    method: 'PATCH', // NB: Set method to PATCH
+                    headers: {
+                        'X-API-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        // Provide new highScore to add to user with id 1
+                        highScore
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Could not update high score')
+                    }
+                    return response.json()
+                })
+                .then(updatedUser => {
+                    // updatedUser is the user with the Patched data
+                    commit('setUser', updatedUser);
+                    return null;
+                })
+                .catch(error => {
+                    throw new Error(error);
+                })
+
+                return null
+            } catch (error) {
+                return error.message
+            }
         },
         async loginUser({ commit }, { action, username }) {
             try {
@@ -56,19 +110,46 @@ export default createStore({
                     throw new Error('login | unknown action provided: [' + action + ']')
                 }
 
-                const [error, user] = [null, { username: username.value }]
-
-                // const [error, user] = await apiLoginUser(
-                //     action,
-                //     username.value,
-                // )
-
-                if (error !== null) {
-                    throw new Error(error)
-                }
-
-                commit('setUser', user) // commit = mutations
-                localStorage.setItem('user', JSON.stringify(user))
+                await fetch(`${API_URL}/trivia?username=${username.value}`)
+                    .then(response => response.json())
+                    .then(results => {
+                        // results will be an array of users that match the username of mega-mind.
+                        console.log(results);
+                        if (results.length > 0) {
+                            // Login as that user
+                            commit('setUser', results) // commit = mutations
+                            return null;
+                        } else {
+                            // Create and login user
+                            fetch(`${API_URL}/trivia`, {
+                                method: 'POST',
+                                headers: {
+                                    'X-API-Key': API_KEY,
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify({
+                                    username: username.value,
+                                    highScore: 0
+                                })
+                            })
+                            .then(response => {
+                                if (!response.ok) {
+                                    throw new Error('Could not create new user')
+                                }
+                                return response.json()
+                            })
+                            .then(newUser => {
+                                commit('setUser', newUser) // commit = mutations
+                                return null;
+                            })
+                            .catch(error => {
+                                throw new Error(error);
+                            })
+                        }
+                    })
+                    .catch(error => {
+                        throw new Error(error);
+                    })
 
                 return null
             } catch (error) {
