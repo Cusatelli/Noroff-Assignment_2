@@ -14,6 +14,38 @@ const loginGuard = (_to, _from, next) => {
     }
 }
 
+const optionsGuard = (_to, _from, next) => {
+    if(!store.state.user) {
+        next('/login')
+    } else {
+        next()
+    }
+}
+
+const gameGuard = (_to, _from, next) => {
+    if(!store.state.user) {
+        next('/login')
+    } else {
+        if(!store.state.inputs) {
+            next('/options')
+        } else {
+            next()
+        }
+    }
+}
+
+const resultsGuard = (_to, _from, next) => {
+    if(!store.state.user) {
+        next('/login')
+    } else {
+        if(!store.state.results) {
+            next('/options')
+        } else {
+            next()
+        }
+    }
+}
+
 const routes = [
     {
         path: "/",
@@ -25,16 +57,19 @@ const routes = [
         beforeEnter: loginGuard
     },
     {
-        path: "/options", // Options
-        component: Options // Options
+        path: "/options",
+        component: Options,
+        beforeEnter: optionsGuard
     },
     {
-        path: "/game", // game
-        component: Game // Game
+        path: "/game",
+        component: Game,
+        beforeEnter: gameGuard
     },
     {
-        path: "/results", // results
-        component: Results // Results
+        path: "/results",
+        component: Results,
+        beforeEnter: resultsGuard
     }
     // Example:
     // {
