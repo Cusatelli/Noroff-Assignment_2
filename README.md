@@ -6,20 +6,21 @@
   <p align="center">
     Noroff
     <br />
-    <a href="#">View Demo</a>
+    <a href="https://vue-3-heroku-deploy.herokuapp.com/">View Demo</a>
   </p>
 </div>
 
 # Table of Contents
 1. [Instructions](#instructions)
 2. [Appendix A](#appendix-a)
-3. [Install](#install)
-4. [Usage](#usage)
-5. [Maintainers](#maintainers)
-6. [Contributing](#contributing)
-7. [Conventions](#conventions)
-8. [License](#license)
-9. [Contact](#contact)
+3. [Demo](#demo)
+4. [Install](#install)
+5. [Usage](#usage)
+6. [Maintainers](#maintainers)
+7. [Contributing](#contributing)
+8. [Conventions](#conventions)
+9. [License](#license)
+10. [Contact](#contact)
 
 # Instructions
 ### The Trivia Game
@@ -112,7 +113,7 @@ User Constraint:
       <li>Once a question is answered the app must move on to the next question.</li>
       <li>When all the questions have been answered the user must be presented with the result screen.</li>
     </ul>
-4. Result Screenm
+4. Result Screen
     <ul>
       <li>The result screen must show all the questions along with the correct and user’s answers.</li>
       <li>Display the total score.</li>
@@ -128,8 +129,19 @@ Scoring Constraint:
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+# Demo
+The demo linked to heroku is a copy of this repository which is why you see FAILURE under Environments.
+We had trouble linking this repository to the Heroku CLI so we resorted to making a clone which worked.
+On the other hand we do not have access to the /trivia db.json file in our demo so you will be greeted with an error when trying to log in, therefore we recommend you try the app in your local environment.
+
+If you want to use the demo make sure you have `user | {"username":"John Doe"}` in your local storage.
+Lastly you will be greeted by another error when trying to read highscore from the API. However your local score should still be recorded with right and wrong answers highlighted. Thank you for your patience!
+
+<a href="https://vue-3-heroku-deploy.herokuapp.com/">View Demo</a>
+
 # Install
 ```
+cd app
 npm install
 ```
 
