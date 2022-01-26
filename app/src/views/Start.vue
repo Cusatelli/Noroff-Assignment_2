@@ -1,11 +1,14 @@
 <script setup>
-import { useRouter } from 'vue-router';
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
+const router = useRouter()
 
+/**
+ * Onclick function takes user to login page
+ */
 function goToLogin() {
-    console.log("Go to login");
-    router.push('/login');
+    console.log('Go to login')
+    router.push('/login')
 }
 </script>
 
