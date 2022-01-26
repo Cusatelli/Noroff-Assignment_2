@@ -10,6 +10,8 @@ const questions = ref([]);
 const correctAnswers = ref([]);
 const answers = ref([]);
 const highscore = ref("");
+
+const correct = ref("")
     
 function restart() {
     router.push('/game');
@@ -30,22 +32,24 @@ onMounted(() => {
 </script>
 
 <template>
-    <!-- <div class="container results"> -->
-    <div class="container start">
-        <h2>Highscore: {{ highscore }}P</h2>
-        <ul v-for="(question, index) in questions"
-            :key="index"    
-            :value="question"
-        >
-            <li>
-                <h2>{{ question }}</h2>
-                <div class="answer selected">
-                    <p class="label">Selected Answer</p>
-                    <p>{{ answers[index] }}</p>
+    <div class="container results">
+        <h2>Score: {{ highscore }}P</h2>
+		<ul class="questions">
+            <li v-for="(question, index) in questions"
+                :key="index"    
+                :value="question">
+                <h2 class="question">{{ question }}</h2>
+                <div class="answer">
+                    <p class="label">Selected</p>
+                    <!-- Hide from view -->
+                    <span style="display: none">{{ correct = answers[index] === correctAnswers[index] }}</span>
+                    <!-- Show in view -->
+                    <p v-if="correct" class="correct">{{ answers[index] }}</p>
+                    <p v-if="!correct" class="incorrect">{{ answers[index] }}</p>
                 </div>
-                <div class="answer correct">
-                    <p class="label">Correct Answer</p>
-                    <p>{{ correctAnswers[index] }}</p>
+                <div class="answer">
+                    <p class="label">Correct</p>
+                    <p class="correct">{{ correctAnswers[index] }}</p>
                 </div>
             </li>
         </ul>

@@ -19,6 +19,7 @@ button {
     &.login,
     &.play,
     &.restart,
+    &.exit,
     &.next {
         background-color: #42b983;
         color: #35495e;
@@ -34,7 +35,7 @@ button {
         margin-inline: 0.5rem;
     }
 
-    &.restart {
+    &.exit {
         background-color: #b9425c;
         
         &:hover {
@@ -42,29 +43,16 @@ button {
         }
     }
 
+    &.restart {
+        background-color: #c7bf4b;
+        
+        &:hover {
+            background-color: #dfd652;
+        }
+    }
+
     .buttons {
         display: flex;
         flex-direction: row;
-    }
-}
-
-ul {
-    &.questions {
-        width: 100%;
-        padding-inline: 2rem;
-    
-        li {
-            list-style: none;
-            width: 100%;
-            
-            &.button {
-                cursor: pointer;
-                background-color: #42b983;
-                margin-block: 0.5rem;
-                padding: 0.5rem;
-                text-align: center;
-                border-radius: 0.2rem;
-            }
-        }
     }
 }
